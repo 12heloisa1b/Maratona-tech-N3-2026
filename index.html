@@ -1,208 +1,73 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Maratona Tech N3 - Detecção de Deepfake</title>
-  <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detector de Fake News & Deepfakes | Maratona Tech</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-  <div class="container">
     <header>
-      <span class="badge">MARATONA TECH - NÍVEL 3</span>
-      <h1>Análise & Detecção de Deepfakes</h1>
-      <p>Tema: Artefatos Digitais | Solução de Conscientização e Tecnologia</p>
+        <h1>Guardiões da Verdade Digital 🛡️</h1>
+        <p>Maratona Tech - N3: Artefatos Digitais</p>
+        <nav>
+            <a href="#oque-e">O que são?</a>
+            <a href="#como-prevenir">Como se Prevenir</a>
+            <a href="#jogo">Jogo dos Erros</a>
+        </nav>
     </header>
 
-    <!-- App Interativo -->
-    <section class="interactive-app">
-      <h2>🔍 Detector Interativo de Mídia Suspeita</h2>
-      <form id="deepfakeForm">
-        <div class="form-group">
-          <label for="fileName">Nome do Arquivo / Mídia:</label>
-          <input type="text" id="fileName" placeholder="ex: video_suspeito.mp4" required>
-        </div>
+    <main class="container">
 
-        <div class="form-group">
-          <label for="origin">Origem do Arquivo:</label>
-          <select id="origin">
-            <option value="WhatsApp / Telegram">WhatsApp / Telegram</option>
-            <option value="Redes Sociais (TikTok/Instagram/X)">Redes Sociais (TikTok/Instagram/X)</option>
-            <option value="E-mail">E-mail</option>
-            <option value="Outros">Outros</option>
-          </select>
-        </div>
+        <!-- Seção 1: O que são -->
+        <section id="oque-e" class="card">
+            <h2>O que são Fake News e Deepfakes?</h2>
+            <p><strong>Fake News:</strong> São notícias falsas ou enganosas criadas para desinformar, gerar pânico ou obter lucros com cliques (clickbait).</p>
+            <p><strong>Deepfakes:</strong> São mídias sintéticas (vídeos, áudios ou fotos) criadas por inteligência artificial. A tecnologia substitui o rosto ou a voz de uma pessoa real por outra com alto nível de fidelidade.</p>
+        </section>
 
-        <h3>Checklist de Sinais Biométricos</h3>
-        
-        <div class="form-group">
-          <label for="blink">O movimento de piscar dos olhos parece natural?</label>
-          <select id="blink">
-            <option value="sim">Sim</option>
-            <option value="nao">Não</option>
-          </select>
-        </div>
+        <!-- Seção 2: Como se prevenir -->
+        <section id="como-prevenir" class="card">
+            <h2>Como se Prevenir</h2>
+            <div class="dicas-grid">
+                <div class="dica-box">
+                    <h3>👀 Observe os Detalhes</h3>
+                    <p>Em vídeos, repare no piscamento dos olhos, iluminação do rosto e sincronização do áudio com os lábios.</p>
+                </div>
+                <div class="dica-box">
+                    <h3>🔍 Cheque a Fonte</h3>
+                    <p>Verifique se veículos de imprensa conhecidos publicaram a mesma informação.</p>
+                </div>
+                <div class="dica-box">
+                    <h3>🛑 Não Compartilhe na Dúvida</h3>
+                    <p>Interrompa a corrente de desinformação. Na dúvida, não repasse para grupos ou redes sociais.</p>
+                </div>
+            </div>
+        </section>
 
-        <div class="form-group">
-          <label for="sync">A fala está em perfeita sintonia com os lábios?</label>
-          <select id="sync">
-            <option value="sim">Sim</option>
-            <option value="nao">Não</option>
-          </select>
-        </div>
+        <!-- Seção 3: Jogo / Quiz Interativo -->
+        <section id="jogo" class="card">
+            <h2>🎮 Jogo: Fato ou Fake?</h2>
+            <p>Teste seus conhecimentos e descubra se você consegue identificar os riscos!</p>
+           
+            <div id="quiz-container">
+                <p id="pergunta">Carregando pergunta...</p>
+                <div class="botoes-opcao">
+                    <button onclick="responder(true)">Verdadeiro (Fato)</button>
+                    <button onclick="responder(false)">Falso (Fake)</button>
+                </div>
+                <p id="resultado" class="resultado-texto"></p>
+                <button id="btn-proximo" onclick="proximaPergunta()" style="display:none;">Próxima Pergunta</button>
+            </div>
+        </section>
 
-        <div class="form-group">
-          <label for="light">A iluminação do rosto combina perfeitamente com o fundo?</label>
-          <select id="light">
-            <option value="sim">Sim</option>
-            <option value="nao">Não</option>
-          </select>
-        </div>
-
-        <div class="form-group">
-          <label for="audio">O áudio possui oscilações robóticas ou ruídos estranhos?</label>
-          <select id="audio">
-            <option value="nao">Não</option>
-            <option value="sim">Sim</option>
-          </select>
-        </div>
-
-        <button type="submit">Analisar Mídia</button>
-      </form>
-
-      <div id="result" class="result-box"></div>
-    </section>
-
-    <!-- Documentação da Maratona -->
-    <section>
-      <h2>1. Escolha e Relevância do Problema</h2>
-      <p>O <strong>deepfake</strong> foi selecionado por representar uma das maiores ameaças da era digital. Por meio de inteligência artificial generativa, é possível clonar vozes, rostos e expressões faciais com alto grau de realismo.</p>
-      <ul>
-        <li><strong>Onde circula:</strong> Redes sociais, aplicativos de mensagens e fóruns da web.</li>
-        <li><strong>Por que é relevante:</strong> Alimenta golpes financeiros, desinformação, prejuízos morais e ataques à privacidade.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>2. Análise do Conteúdo Digital</h2>
-      <ul>
-        <li><strong>Artefato Analisado:</strong> Vídeo curto gerado por IA atribuído a uma figura pública promovendo uma fraude financeira.</li>
-        <li><strong>Sinais de Alerta:</strong> Desalinhamento labial, falhas ao piscar, bordas borradas no rosto e voz sintética.</li>
-        <li><strong>Dados Envolvidos:</strong> Imagens faciais, dados biométricos de voz e metadados de vídeo.</li>
-        <li><strong>Dilema Digital:</strong> Inovação da IA generativa vs. Ética, privacidade e direito à imagem.</li>
-      </ul>
-    </section>
-
-    <section>
-      <h2>3. Tabela de Riscos e Proteção</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Risco Identificado</th>
-            <th>Ação Básica de Proteção</th>
-            <th>Importância</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Golpes Financeiros</td>
-            <td>Interromper o compartilhamento</td>
-            <td>Contém a propagação da fraude.</td>
-          </tr>
-          <tr>
-            <td>Danos à Reputação</td>
-            <td>Checar em fontes oficiais</td>
-            <td>Confirma a autenticidade antes de repassar.</td>
-          </tr>
-          <tr>
-            <td>Roubo de Dados</td>
-            <td>Denunciar na plataforma</td>
-            <td>Ajuda a remover a mídia nociva do ar.</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section>
-      <h2>4. Organização do Grupo</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Integrante</th>
-            <th>Responsabilidade</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Integrante A</td>
-            <td>Pesquisa teórica e relatório técnico</td>
-          </tr>
-          <tr>
-            <td>Integrante B</td>
-            <td>Análise do artefato e guia visual</td>
-          </tr>
-          <tr>
-            <td>Integrante C</td>
-            <td>Desenvolvimento do protótipo e aplicação web</td>
-          </tr>
-          <tr>
-            <td>Integrante D</td>
-            <td>Campanha de conscientização e documentação</td>
-          </tr>
-        </tbody>
-      </table>
-    </section>
+    </main>
 
     <footer>
-      <p>Projeto desenvolvido para a Maratona Tech - Nível 3: Artefatos Digitais</p>
+        <p>Projeto para a Maratona Tech - N3: Artefatos Digitais</p>
     </footer>
-  </div>
 
-  <script>
-    document.getElementById('deepfakeForm').addEventListener('submit', function(e) {
-      e.preventDefault();
-
-      const fileName = document.getElementById('fileName').value;
-      const origin = document.getElementById('origin').value;
-      const blink = document.getElementById('blink').value;
-      const sync = document.getElementById('sync').value;
-      const light = document.getElementById('light').value;
-      const audio = document.getElementById('audio').value;
-
-      let score = 0;
-      if (blink === 'nao') score += 25;
-      if (sync === 'nao') score += 30;
-      if (light === 'nao') score += 20;
-      if (audio === 'sim') score += 25;
-
-      const resultBox = document.getElementById('result');
-      resultBox.style.display = 'block';
-
-      if (score >= 50) {
-        resultBox.className = 'result-box result-high';
-        resultBox.innerHTML = `
-          <h3>⚠️ ALERTA ALTO: Probabilidade de Manipulação (${score}%)</h3>
-          <p><strong>Arquivo:</strong> ${fileName} (${origin})</p>
-          <p>Este arquivo apresenta fortes indícios de ter sido alterado por IA.</p>
-          <br>
-          <strong>Recomendações:</strong>
-          <ul>
-            <li>Não compartilhe este conteúdo.</li>
-            <li>Procure a mesma notícia em portais jornalísticos confiáveis.</li>
-            <li>Denuncie a publicação na rede social de origem.</li>
-          </ul>
-        `;
-      } else {
-        resultBox.className = 'result-box result-low';
-        resultBox.innerHTML = `
-          <h3>✅ BAIXO RISCO: Probabilidade de Manipulação (${score}%)</h3>
-          <p><strong>Arquivo:</strong> ${fileName} (${origin})</p>
-          <p>Foram detectados poucos indícios de inteligência artificial.</p>
-          <p><em>Sempre mantenha a atenção e verifique a fonte original antes de compartilhar.</em></p>
-        `;
-      }
-    });
-  </script>
+    <script src="script.js"></script>
 </body>
 </html>
